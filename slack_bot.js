@@ -15,23 +15,29 @@ app.get('/', (req, res) => {
 
 app.post('/',(req,res) => {
 
-
+   
    if (req.body.token !== TOKEN){
      res.statusCode = 400;
       res.send();
+   }else if (req.body.text === ''){
+     res.statusCode = 404;
+     res.send("You must enter a git username");
+   }else{
+     getGitUser(req.body.text).then(function(data){
+
+
+      res.send(`User-name: ${data.login}, Site: ${data.blog}, Repos: ${data.public_repos}, URL: ${data.html_url}`);
+
+    }).then(null, (err) =>{
+
+    });
+
+
    }
 
 
 
-       getGitUser(req.body.user_name).then(function(data){
 
-        console.log(data)
-        res.send(data.login);
-
-      }).then(null, (err) =>{
-        console.log("error: ", err);
-      });
-        
 
 
 
@@ -49,6 +55,7 @@ exports.listen = function(port, callback) {
 
 
 let getGitUser = (user) => {
+
   return new Promise((resolve, reject) => {
     let options = {
       uri: `https://api.github.com/users/${user}`,
@@ -64,25 +71,3 @@ let getGitUser = (user) => {
     });
   });
 }
-/*
-function getGitUser(user){
-
-    let deferred = Promise.defer();
-  let options = {
-    uri: `https://api.github.com/users/${user}`,
-    method: 'GET',
-    json: true,
-    headers: {
-      'User-Agent': 'Request-Promise'
-    }
-  }
-
-  rp(options).then(function(data){ //JSON object returned
-    deferred.resolve(data);
-  }).catch(function(err){
-
-    deferred.resolve(err);
-  });
-  return deferred.promise;
-
-}*/

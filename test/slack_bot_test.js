@@ -60,6 +60,7 @@ describe('server', () => {
       .expect(200)
       .end((err, resp) => {
         const respObj = JSON.parse(resp.text);
+        console.log("TEEEXXXXXXXXXXT: " + resp.text);
         expect(respObj, 'to have key', 'text');
         expect(respObj.text, 'to contain', 'flatiron-school');
         expect(respObj.text, 'to contain', 'https://github.com/flatiron-school');
