@@ -59,8 +59,8 @@ describe('server', () => {
       .send(transformData(data))
       .expect(200)
       .end((err, resp) => {
+        console.log(err);
         const respObj = JSON.parse(resp.text);
-        console.log("TEEEXXXXXXXXXXT: " + resp.text);
         expect(respObj, 'to have key', 'text');
         expect(respObj.text, 'to contain', 'flatiron-school');
         expect(respObj.text, 'to contain', 'https://github.com/flatiron-school');
@@ -79,7 +79,7 @@ describe('server', () => {
       .end((err, resp) => {
         if(err) return done(err);
         const respObj = JSON.parse(resp.text);
-        expect(respObj, 'to have key', 'text');
+       expect(respObj, 'to have key', 'text');
         done();
       });
   });
