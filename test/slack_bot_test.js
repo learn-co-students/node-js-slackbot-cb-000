@@ -1,4 +1,4 @@
-"use strict";
+  "use strict";
 
 const chai = require('chai');
 const expect = require('unexpected');
@@ -59,6 +59,7 @@ describe('server', () => {
       .send(transformData(data))
       .expect(200)
       .end((err, resp) => {
+        console.log(err);
         const respObj = JSON.parse(resp.text);
         expect(respObj, 'to have key', 'text');
         expect(respObj.text, 'to contain', 'flatiron-school');
@@ -78,7 +79,7 @@ describe('server', () => {
       .end((err, resp) => {
         if(err) return done(err);
         const respObj = JSON.parse(resp.text);
-        expect(respObj, 'to have key', 'text');
+       expect(respObj, 'to have key', 'text');
         done();
       });
   });
