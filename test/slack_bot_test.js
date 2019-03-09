@@ -50,7 +50,7 @@ describe('server', () => {
       .expect(400,done);
   });
 
-  it('POST to / for existent user returns correctly ', (done) => {
+  it('POST to / for existant user returns correctly ', (done) => {
     let data = clone(mockSlackPostData);
     data.text = 'flatiron-school';
     request(baseUrl)

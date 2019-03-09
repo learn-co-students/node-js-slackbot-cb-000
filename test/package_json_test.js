@@ -1,3 +1,4 @@
+
 const expect = require('chai').expect;
 const packageJson = require('../package.json');
 
