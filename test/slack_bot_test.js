@@ -51,6 +51,7 @@ describe('server', () => {
   });
 
   it('POST to / for existent user returns correctly ', (done) => {
+    debugger;
     let data = clone(mockSlackPostData);
     data.text = 'flatiron-school';
     request(baseUrl)
