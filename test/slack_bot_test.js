@@ -59,6 +59,7 @@ describe('server', () => {
       .send(transformData(data))
       .expect(200)
       .end((err, resp) => {
+        //console.log("###resp: " + JSON.stringify(resp));
         const respObj = JSON.parse(resp.text);
         expect(respObj, 'to have key', 'text');
         expect(respObj.text, 'to contain', 'flatiron-school');
